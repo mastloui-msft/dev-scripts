@@ -23,8 +23,18 @@ set repository=vienna
 REM Set the target branch for the PR (e.g., 'master')
 set targetBranch=master
 
-REM Set the title and description for the PR
+
 set prTitle=Create PR for %branchName%
+
+if NOT "%1"=="" (
+    set prTitle=%1
+)
+
+REM Create a new branch with the name provided in the first argument
+git checkout -b users/mastloui/%1
+
+
+REM Set the title and description for the PR
 set prDescription=This PR is automatically created for the branch %branchName%.
 
 REM Use Azure CLI to get an Azure DevOps personal access token (PAT)
